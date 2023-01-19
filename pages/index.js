@@ -5,6 +5,8 @@ import styles from '@/styles/Home.module.css'
 import axios from 'axios'
 import { useState } from 'react'
 import InputBox from '@/components/searchBox'
+import WeatherInfo from '@/components/weatherInfo'
+import ErrorInfo from '@/components/errorInfo'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -51,17 +53,11 @@ export default function Home() {
         {
           weather && weather.map((w, index) =>   {
             return(
-              <div key={index} className="weather">
-                <div className='location'> {data.name} </div>
-                <div> {w.main} </div>
-                <div>{w.description}</div>  
-              </div>
+                <WeatherInfo data={data} w={w} />
             )
           })
         }
-        <div className='errorMessage'>
-        {errorMessage}
-        </div>
+        <ErrorInfo errorMessage={errorMessage}/>
       </main>
     </>
   )
