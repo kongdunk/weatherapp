@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import axios from 'axios'
-import { useState } from 'react'
+import { use, useState } from 'react'
 import InputBox from '@/components/searchBox'
 import WeatherInfo from '@/components/weatherInfo'
 import ErrorInfo from '@/components/errorInfo'
@@ -15,11 +14,14 @@ export default function Home() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
   const [weather, setWeather] = useState('');
-  
+  const [temp, setTemp] = useState('');
+  const [feelsLikeTemp, setFeelsLikeTemp] = useState('');
+  const [gust, setGust] = useState('');
+      
   var apiKey = "8f203b16150b3debb67a311e1a97d4bf";
   var lang = "en";
-  var units = "standard";
-  var url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}&lang=${lang}`;
+  var units = "metric";
+  var url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}&lang=${lang}&`;
 
   const searchLocation = (event) => {
     if(event.key === "Enter"){
@@ -29,6 +31,9 @@ export default function Home() {
           setData(response.data)
           console.log(response.data)
           setWeather(response.data.weather)
+          setTemp(response.data.main.temp)
+          setFeelsLikeTemp(response.data.main.feels_like)
+          setGust(response.data.wind.gust)
           setErrorMessage("")
         }).catch(err => {
           console.log(err)
@@ -53,7 +58,7 @@ export default function Home() {
         {
           weather && weather.map((w, index) =>   {
             return(
-                <WeatherInfo data={data} w={w} />
+                <WeatherInfo data={data} w={w} index={index} temp={temp} feelsLikeTemp={feelsLikeTemp} gust={gust} />
             )
           })
         }
