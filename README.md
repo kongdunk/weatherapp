@@ -1,12 +1,15 @@
-Stylize and make new README file - describe project 
-Save it on github and post on github
-By saturday
+# Weather App
 
-figma done by this week
-apis fixed by this week
+Weather App for searching a location to see the current weather of the location. Shows the weather, temperature, feels like temperature, and gust of the location.
 
-next week build out the figma
+## APIs Used
 
-sunday call 
+Used the openweathermap to find the weather, temperature, feels like temperature, and gust of the locations
 
-fake loading screen with affirmations
+```
+https://openweathermap.org/current
+```
+
+## Tools/Language used
+
+Built using Next.js 13
