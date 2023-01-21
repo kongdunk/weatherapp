@@ -5,8 +5,8 @@ export default function WeatherInfo({data, w, index, temp, feelsLikeTemp, gust})
             <div> {w.main} </div>
             <div>{w.description}</div>  
             <div>Temp: {temp}°C</div>
-            <div>Feels like {feelsLikeTemp}°C</div>
-            <div>{gust}</div>
+            <div>Feels like: {feelsLikeTemp}°C</div>
+            <div>Gust: {gust}</div>
         </div>
     )
 }
